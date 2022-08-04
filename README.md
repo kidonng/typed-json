@@ -21,21 +21,17 @@ JSON.parse('true') // => JsonValue
 JSON.parse<boolean>('true') // => boolean
 JSON.parse('true', (key, value) => {
 	return value // `unknown`, instead of `any`
-})
+}) // `unknown` when using a reviver
 
 JSON.stringify({foo: 'bar'}) // => string
-JSON.stringify({symbol: Symbol('foo')}) // => never
+JSON.stringify(Symbol('foo')) // => never
 JSON.stringify({foo: 'bar'}, (key, value) => {
 	return value // `unknown`, instead of `any`
 })
 ```
 
 - [`JsonValue`](https://github.com/sindresorhus/type-fest/blob/96bf69d14834bb7d2450e276f8199fbb69e3642c/source/basic.d.ts#L45) matches any valid JSON value.
-- `JSON.stringify` returns [`never`](https://www.typescriptlang.org/docs/handbook/2/functions.html#never) if the value does not match `JsonValue` and prevents the result from being used.
-
-  This is to make sure the value preserve their original identity when serialized, and prevent you from mistakenly passing a value of wrong types.
-
-  However, it does not consider [`toJSON()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#tojson_behavior). You can cast the type to `string` or call `toJSON()` manually if you rely on this behavior.
+- `JSON.stringify` returns [`never`](https://www.typescriptlang.org/docs/handbook/2/functions.html#never) if the value can not be [`Jsonify`](https://github.com/sindresorhus/type-fest/blob/main/source/jsonify.d.ts) and prevents the result from being used.
 
 ## See Also
 
