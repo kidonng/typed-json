@@ -1,0 +1,28 @@
+{
+	"name": "@kidonng/typed-json",
+	"version": "0.0.0",
+	"description": "Better typed JSON.parse and JSON.stringify",
+	"scripts": {
+		"lint": "xo",
+		"test": "tsc"
+	},
+	"repository": "kidonng/typed-json",
+	"license": "MIT",
+	"author": "Kid <hi@xuann.wang> (https://xuann.wang/)",
+	"main": "shim.d.ts",
+	"types": "shim.d.ts",
+	"files": [
+		"shim.d.ts"
+	],
+	"xo": {
+		"prettier": true,
+		"semicolon": false
+	},
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "^3.0.1",
+		"@type-challenges/utils": "^0.1.1",
+		"type-fest": "^2.18.0",
+		"typescript": "^4.7.4",
+		"xo": "^0.51.0"
+	}
+}
