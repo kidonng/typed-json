@@ -22,8 +22,10 @@ const stringify3 = JSON.stringify({foo: 'bar'} as Foo)
 const stringify4 = JSON.stringify({
 	date: new Date(),
 })
+const stringify5 = JSON.stringify(Symbol('foo'), ['bar'])
 
 type TestStringify1 = Expect<Equal<typeof stringify1, string>>
 type TestStringify2 = Expect<Equal<typeof stringify2, never>>
 type TestStringify3 = Expect<Equal<typeof stringify3, string>>
 type TestStringify4 = Expect<Equal<typeof stringify4, string>>
+type TestStringify5 = Expect<Equal<typeof stringify5, never>>

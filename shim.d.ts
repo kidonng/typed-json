@@ -11,7 +11,11 @@ declare global {
 
 		stringify<T>(
 			value: T,
-			replacer?: (this: unknown, key: string, value: unknown) => unknown,
+			replacer?:
+				| ((this: unknown, key: string, value: unknown) => unknown)
+				| Array<number | string>
+				// eslint-disable-next-line @typescript-eslint/ban-types
+				| null,
 			space?: string | number,
 		): Jsonify<T> extends never ? never : string
 	}
