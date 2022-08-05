@@ -1,7 +1,6 @@
 {
 	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
-		"noEmit": true,
-		"noUnusedLocals": false
+		"noEmit": true
 	}
 }

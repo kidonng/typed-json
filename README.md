@@ -14,24 +14,54 @@ This is a type-only module and does not contain any runtime code.
 
 ```ts
 import '@kidonng/typed-json'
-// Use a type-only import (more compatible with bundlers)
-import type {} from '@kidonng/typed-json'
 
 JSON.parse('true') // => JsonValue
 JSON.parse<boolean>('true') // => boolean
-JSON.parse('true', (key, value) => {
-	return value // `unknown`, instead of `any`
-}) // `unknown` when using a reviver
 
 JSON.stringify({foo: 'bar'}) // => string
 JSON.stringify(Symbol('foo')) // => never
-JSON.stringify({foo: 'bar'}, (key, value) => {
-	return value // `unknown`, instead of `any`
-})
 ```
 
-- [`JsonValue`](https://github.com/sindresorhus/type-fest/blob/96bf69d14834bb7d2450e276f8199fbb69e3642c/source/basic.d.ts#L45) matches any valid JSON value.
+Or use a type-only import if bundlers are unhappy with the bare import:
+
+```ts
+import type {} from '@kidonng/typed-json'
+```
+
+## Motivation
+
+The built-in `JSON` object is [loosely typed by default](https://github.com/microsoft/TypeScript/blob/5c1abd300d39e81f6a5eed9a6eb66a3cff45ea46/lib/lib.es5.d.ts#L1052-L1074):
+
+<!-- prettier-ignore -->
+```ts
+interface JSON {
+    parse(text: string, reviver?: (this: any, key: string, value: any) => any): any;
+    stringify(value: any, replacer?: (this: any, key: string, value: any) => any, space?: string | number): string;
+    stringify(value: any, replacer?: (number | string)[] | null, space?: string | number): string;
+}
+```
+
+This poses potential issues when using `JSON.parse` and `JSON.stringify`:
+
+- Developers tend to forget type checking `JSON.parse` return values
+- Developers may mistakenly pass a non-serializable value to `JSON.stringify`
+
+With typed-json:
+
+- `JSON.parse` returns [`JsonValue`](https://github.com/sindresorhus/type-fest/blob/96bf69d14834bb7d2450e276f8199fbb69e3642c/source/basic.d.ts#L45) which matches any valid JSON value and enables type checking.
 - `JSON.stringify` returns [`never`](https://www.typescriptlang.org/docs/handbook/2/functions.html#never) if the value can not be [`Jsonify`](https://github.com/sindresorhus/type-fest/blob/main/source/jsonify.d.ts) and prevents the result from being used.
+
+typed-json also enforces stricter types when using the `reviver` option of `JSON.parse`, and `replacer` option of `JSON.stringify`:
+
+```ts
+JSON.parse('true', (key, value) => {
+	return value // `unknown`
+}) // return `unknown` when using a reviver
+
+JSON.stringify({foo: 'bar'}, (key, value) => {
+	return value // `unknown`
+})
+```
 
 ## See Also
 
