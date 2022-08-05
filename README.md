@@ -22,6 +22,8 @@ JSON.stringify({foo: 'bar'}) // => string
 JSON.stringify(Symbol('foo')) // => never
 ```
 
+[_TS Playground_](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAcgAIGtgBMIDssHMD0MAnmAKboC0AVgM7YIBQDAUgMoDyAcgHRgCGUGqQAUCGFACupBAEo4+fHAC8APjjM6WAGp8ANlJYce-QaQA8AIwgRdpPlhWjxU2fMWq4Vm3axM2XbhpxYDxgADMiYQBvMOsALkQLAQQAXzkFZTUgqBDcQwDs3PDI1iIQK11RWIhZdPc1LFIAN1IoIA)
+
 Or use a type-only import if bundlers are unhappy with the bare import:
 
 ```ts
@@ -54,6 +56,8 @@ With typed-json:
 typed-json also enforces stricter types when using the `reviver` option of `JSON.parse`, and `replacer` option of `JSON.stringify`:
 
 ```ts
+import '@kidonng/typed-json'
+
 JSON.parse('true', (key, value) => {
 	return value // `unknown`
 }) // return `unknown` when using a reviver
@@ -62,6 +66,8 @@ JSON.stringify({foo: 'bar'}, (key, value) => {
 	return value // `unknown`
 })
 ```
+
+[_TS Playground_](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAcgAIGtgBMIDssHMD0MAnmAKboC0AVgM7YIBQDAUgMoDyAcgHRgCGUGqQAUCGFACupBABo4wlKSJyAbnwA2UgJRwAvAD44AbwYBIKKRgSoWOGs2k4+fHAAGErCiwQA7llcMAL46znAWVjZuHl6+-nA+ABakthI0wHhwfGGkKsAqpFBMbFzcNOLpuMAAZkTCRlUQEABciABGAgiBcgpKqhraeoYm5pbWtvZSTi7unt5+AcFAA)
 
 ## See Also
 
