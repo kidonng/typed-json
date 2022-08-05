@@ -4,7 +4,7 @@
 	"description": "Better typed JSON.parse and JSON.stringify",
 	"scripts": {
 		"lint": "xo",
-		"test": "tsc"
+		"test": "tsd"
 	},
 	"repository": "kidonng/typed-json",
 	"license": "MIT",
@@ -20,7 +20,7 @@
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^3.0.1",
-		"@type-challenges/utils": "^0.1.1",
+		"tsd": "^0.22.0",
 		"type-fest": "^2.18.0",
 		"typescript": "^4.7.4",
 		"xo": "^0.51.0"

@@ -1,5 +1,5 @@
 import type {JsonValue} from 'type-fest'
-import type {Equal, Expect} from '@type-challenges/utils'
+import {expectType} from 'tsd'
 // eslint-disable-next-line import/no-unassigned-import
 import './shim.js'
 
@@ -8,9 +8,9 @@ const parse2 = JSON.parse<boolean>('true')
 const parse3 = JSON.parse('true', (_key, value) => {
 	return value
 })
-type TestParse1 = Expect<Equal<typeof parse1, JsonValue>>
-type TestParse2 = Expect<Equal<typeof parse2, boolean>>
-type TestParse3 = Expect<Equal<typeof parse3, unknown>>
+expectType<JsonValue>(parse1)
+expectType<boolean>(parse2)
+expectType<unknown>(parse3)
 
 interface Foo {
 	foo: string
@@ -24,8 +24,8 @@ const stringify4 = JSON.stringify({
 })
 const stringify5 = JSON.stringify(Symbol('foo'), ['bar'])
 
-type TestStringify1 = Expect<Equal<typeof stringify1, string>>
-type TestStringify2 = Expect<Equal<typeof stringify2, never>>
-type TestStringify3 = Expect<Equal<typeof stringify3, string>>
-type TestStringify4 = Expect<Equal<typeof stringify4, string>>
-type TestStringify5 = Expect<Equal<typeof stringify5, never>>
+expectType<string>(stringify1)
+expectType<never>(stringify2)
+expectType<string>(stringify3)
+expectType<string>(stringify4)
+expectType<never>(stringify5)
