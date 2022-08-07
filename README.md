@@ -71,4 +71,6 @@ JSON.stringify({foo: 'bar'}, (key, value) => {
 
 ## See Also
 
+- [load-json-file](https://github.com/sindresorhus/load-json-file)
+- [write-json-file](https://github.com/sindresorhus/write-json-file)
 - [typed-query-selector](https://github.com/g-plane/typed-query-selector)
