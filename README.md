@@ -13,7 +13,7 @@ npm install @kidonng/typed-json
 This is a type-only module and does not contain any runtime code.
 
 ```ts
-import '@kidonng/typed-json'
+import type {} from '@kidonng/typed-json'
 
 JSON.parse('true') // => JsonValue
 JSON.parse<boolean>('true') // => boolean
@@ -23,12 +23,6 @@ JSON.stringify(Symbol('foo')) // => never
 ```
 
 [_TS Playground_](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAcgAIGtgBMIDssHMD0MAnmAKboC0AVgM7YIBQDAUgMoDyAcgHRgCGUGqQAUCGFACupBAEo4+fHAC8APjjM6WAGp8ANlJYce-QaQA8AIwgRdpPlhWjxU2fMWq4Vm3axM2XbhpxYDxgADMiYQBvMOsALkQLAQQAXzkFZTUgqBDcQwDs3PDI1iIQK11RWIhZdPc1LFIAN1IoIA)
-
-Or use a type-only import if bundlers are unhappy with the bare import:
-
-```ts
-import type {} from '@kidonng/typed-json'
-```
 
 ## Motivation
 
