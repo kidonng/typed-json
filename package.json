@@ -1,6 +1,6 @@
 {
 	"name": "@kidonng/typed-json",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Better typed JSON.parse and JSON.stringify",
 	"scripts": {
 		"lint": "xo",
