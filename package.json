@@ -3,7 +3,6 @@
 	"version": "1.2.1",
 	"description": "Better typed JSON.parse and JSON.stringify",
 	"scripts": {
-		"lint": "xo",
 		"test": "tsd"
 	},
 	"repository": "kidonng/typed-json",
